@@ -4,12 +4,16 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ClarityModule } from '@clr/angular';
 
+import { ForumRoutingModule } from './forum-routing.module';
+
 import { ForumComponent } from './forum/forum.component';
 import { ForumsComponent } from './forums/forums.component';
 import { ThreadComponent } from './thread/thread.component';
 import { ThreadsComponent } from './threads/threads.component';
 
 import { ForumsService } from './services/forums.service';
+
+
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { ForumsService } from './services/forums.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ForumRoutingModule,
     ClarityModule,
   ],
   providers: [

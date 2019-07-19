@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit, AfterViewChecked } from '@ang
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ChatBotService } from '../services/chat-bot.service';
 import { UserService } from '../services/user.service';
-
+/* tslint:disable:no-inferrable-types variable-name prefer-const arrow-return-shorthand no-string-literal quotemark */
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -12,23 +12,34 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   user: string;
   guest: string;
   messages: any[];
-  message: string = '';
+  message = '';
   @ViewChild('scrollBox') private scrollBox: ElementRef;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private chatBotService: ChatBotService,
     private userService: UserService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.messages = [];
+      this.user = this.userService.getUser();
+      this.guest = params['username'];
+    });
+  }
+
 
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
-  close() {}
+  close() {
+    this.router.navigate([{outlets: {chat: null}}]);
+  }
 
   onKeyUp(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this.send();
     }
   }
@@ -41,9 +52,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   private addMessage(author, message, type) {
     this.messages.push({
-      author: author,
-      message: message,
-      type: type
+      author,
+      message,
+      type
     });
     this.scrollToBottom();
   }
@@ -51,7 +62,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   private scrollToBottom(): void {
     try {
       this.scrollBox.nativeElement.scrollTop = this.scrollBox.nativeElement.scrollHeight;
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }

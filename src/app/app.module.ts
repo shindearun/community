@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ForumsModule } from './forums/forums.module';
 import { AppRoutingModule } from './app-routing.module';
+
+import { ForumsModule } from './forums/forums.module';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
@@ -13,6 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { UserService } from './services/user.service';
 import { ClarityModule } from '@clr/angular';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ClarityModule } from '@clr/angular';
     ClarityModule
   ],
   providers: [
-    UserService
+    UserService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

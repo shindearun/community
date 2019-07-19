@@ -21,6 +21,8 @@ export interface Forum {
   alias: string;
 }
 
+/* tslint:disable:no-inferrable-types variable-name prefer-const arrow-return-shorthand no-string-literal
+quotemark object-literal-key-quotes max-line-length */
 export const Users = [
   "dlawrenceg",
   "jhayesa",

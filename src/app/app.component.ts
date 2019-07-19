@@ -12,7 +12,7 @@ import { UserService } from './services/user.service';
   ]
 })
 export class AppComponent {
-  loggedIn: boolean = false;
+  loggedIn = false;
 
   constructor(private userService: UserService) {}
 

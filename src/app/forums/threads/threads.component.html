@@ -3,11 +3,11 @@
     <table class="table" *ngIf="threads">
       <tr>
         <th>Thread</th>
-        <th>User</th>
+        <th>Last Post User</th>
         <th>Last Post</th>
-        <th>Posts</th>
+        <th>Total Posts</th>
       </tr>
-      <tr *ngFor="let thread of threads">
+      <tr *ngFor="let thread of threads" [routerLink]="[thread.alias]">
         <td>{{thread.title}}</td>
         <td>{{thread.posts[0].username}}</td>
         <td>{{thread.posts[0].timestamp | date:'medium'}}</td>
